@@ -9,5 +9,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "node-telegram-bot-api": "^0.54.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.2"
   }
 }
