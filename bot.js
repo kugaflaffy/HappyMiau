@@ -5,8 +5,15 @@ const token = '6631012155:AAG0KWijZv3WOsDnwwxEsWlssXpJoZmiY04';
 const bot = new TelegramBot(token, { polling: true });
 bot.onText(/^\/start$/, (msg) => {
   const chatId = msg.chat.id;
-  const response = '¡Hola! Soy tu bot de Telegram. ¿En qué puedo ayudarte?';
-  sendMessage(chatId, response);
+  const response = '¡Hola ૮ ˶ᵔ ᵕ ᵔ˶ ა! presiona el botón de la derecha para ver el menú';
+  const keyboard = {
+    reply_markup: {
+      keyboard: [['⋆⭒˚｡⋆ info', 'ฅ^•ﻌ•^ฅ cat poto', '✎ quote'], ['₍^._.^₎ 𐒡 cat fact']],
+      resize_keyboard: true,
+      one_time_keyboard: true
+    }
+  };
+  sendMessage(chatId, response, keyboard);
 });
 
 bot.onText(/^\/info$/, (msg) => {
@@ -45,11 +52,6 @@ bot.onText(/^\/catfact$/, async (msg) => {
   }
 });
 
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  const response = 'No entiendo ese comando. Por favor, usa uno de los comandos disponibles.';
-  sendMessage(chatId, response);
-});
 
 async function getRandomCatImage() {
   const response = await axios.get('https://api.thecatapi.com/v1/images/search');
@@ -66,6 +68,6 @@ async function getRandomCatFact() {
   return response.data.fact;
 }
 
-function sendMessage(chatId, response) {
-  bot.sendMessage(chatId, response, { parse_mode: 'HTML' });
+function sendMessage(chatId, response, options = {}) {
+  bot.sendMessage(chatId, response, { parse_mode: 'HTML', ...options });
 }
