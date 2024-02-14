@@ -8,7 +8,7 @@ bot.onText(/^\/start$/, (msg) => {
   const response = '¡Hola ૮ ˶ᵔ ᵕ ᵔ˶ ა! presiona el botón de la derecha para ver el menú';
   const keyboard = {
     reply_markup: {
-      keyboard: [['⋆⭒˚｡⋆ info', 'ฅ^•ﻌ•^ฅ cat poto', '✎ quote'], ['₍^._.^₎ 𐒡 cat fact']],
+      keyboard: [['⋆⭒˚｡⋆ info', 'ฅ•ﻌ•ฅ cat photo', '✎ quote'], ['₊˚ʚ ᗢ₊˚✧ ﾟ. cat fact']],
       resize_keyboard: true,
       one_time_keyboard: true
     }
@@ -16,13 +16,13 @@ bot.onText(/^\/start$/, (msg) => {
   sendMessage(chatId, response, keyboard);
 });
 
-bot.onText(/^\/info$/, (msg) => {
+bot.onText(/^⋆⭒˚｡⋆ info$/, (msg) => {
   const chatId = msg.chat.id;
   const response = 'Esta es la información que necesitas.';
   sendMessage(chatId, response);
 });
 
-bot.onText(/^\/cat$/, async (msg) => {
+bot.onText(/^ฅ•ﻌ•ฅ cat photo$/, async (msg) => {
   const chatId = msg.chat.id;
   try {
     const imageUrl = await getRandomCatImage();
@@ -32,7 +32,7 @@ bot.onText(/^\/cat$/, async (msg) => {
   }
 });
 
-bot.onText(/^\/quote$/, async (msg) => {
+bot.onText(/^✎ quote$/, async (msg) => {
   const chatId = msg.chat.id;
   try {
     const quote = await getRandomQuote();
@@ -42,7 +42,7 @@ bot.onText(/^\/quote$/, async (msg) => {
   }
 });
 
-bot.onText(/^\/catfact$/, async (msg) => {
+bot.onText(/^₊˚ʚ ᗢ₊˚✧ ﾟ. cat fact$/, async (msg) => {
   const chatId = msg.chat.id;
   try {
     const fact = await getRandomCatFact();
@@ -51,7 +51,6 @@ bot.onText(/^\/catfact$/, async (msg) => {
     sendMessage(chatId, 'Lo siento, no pude obtener un hecho sobre gatos en este momento.');
   }
 });
-
 
 async function getRandomCatImage() {
   const response = await axios.get('https://api.thecatapi.com/v1/images/search');
